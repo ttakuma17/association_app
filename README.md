@@ -70,7 +70,18 @@ $ rails db:migrate
 ---
 [いよいよアソシエーションを記述しよう](https://qiita.com/kazukimatsumoto/items/14bdff681ec5ddac26d1#%E3%81%84%E3%82%88%E3%81%84%E3%82%88%E3%82%A2%E3%82%BD%E3%82%B7%E3%82%A8%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E8%A8%98%E8%BF%B0%E3%81%97%E3%82%88%E3%81%86)
 ---
+遭遇したエラー
+ 
+調査した内容
+ストロングパラメータ
+[【Ruby on Rails】ストロングパラメータって何なの？](https://qiita.com/ozackiee/items/f100fd51f4839b3fdca8)
+[Rails ガイド ストロングパラメータ](https://railsguides.jp/action_controller_overview.html#strong-parameters)
 
+_pathメソッド
+[_pathメソッドと_urlメソッドの使い分け](https://qiita.com/higeaaa/items/df8feaa5b6f12e13fb6f)
+
+[Railsガイド パスとURL
+用ヘルパー](https://railsguides.jp/routing.html#%E3%83%91%E3%82%B9%E3%81%A8url%E7%94%A8%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC)
 
 
 ===============================================================================

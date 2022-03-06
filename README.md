@@ -1,13 +1,10 @@
 # README
-
 以下記事を参考にRailsのアソシエーションについて学習をすすめる
+Railsの理解を深めるためと、AWSへのデプロイ用のアプリとして使用します。
 
 [【初心者向け】丁寧すぎるRails『アソシエーション』チュートリアル【幾ら何でも】【完璧にわかる】🎸](https://qiita.com/kazukimatsumoto/items/14bdff681ec5ddac26d1)
 
-追加タスク
-1. [コメント機能も作ってみよう](https://qiita.com/kazukimatsumoto/items/14bdff681ec5ddac26d1#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%A9%9F%E8%83%BD%E3%82%82%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86) 多対多の箇所の実装から自身で対応可能なはず
-2. READMEが汚いので修正すること
-3. アプリのビューが残念なので、頃合いを見て修正すること（優先度は高くはない）
+***README.mdの修正***
 
 ### 作業ログ
 ---
@@ -33,8 +30,10 @@
 ・authenticate_user!の意味 deviseのメソッド
 [【rails】authenticate_user!の使い方](https://qiita.com/gogotakataka1234/items/c7d5c0b3d8953216259e)
 
-ここまでの実行コマンドまとめ
+・deviseについて
+[[*Rails*] deviseの使い方（rails5版）](https://qiita.com/cigalecigales/items/f4274088f20832252374)
 
+ここまでの実行コマンドまとめ
 Local側(Mac)の設定確認
 
 RubyとRailsの環境確認
@@ -89,9 +88,6 @@ _pathメソッド
 ---
 多対多 の設計を実装 → 中間テーブルの登場
 
-遭遇したエラー
-
-
 調査した内容
 deviseのメソッドでどんなものが頻出なのかをよく理解できていなかったので確認
 [Rails deviseで使えるようになるヘルパーメソッド一覧](https://qiita.com/tobita0000/items/866de191635e6d74e392)
@@ -119,43 +115,27 @@ $ rails g model Favorite user_id:integer tweet_id:integer
 $ rails g model Favorite user_id:integer tweet_id:integer
 $ rails db:migrate
 
+---
+[フォロー、フォロワー機能をER図を使って設計しよう](https://qiita.com/kazukimatsumoto/items/14bdff681ec5ddac26d1#%E3%83%95%E3%82%A9%E3%83%AD%E3%83%BC%E3%83%95%E3%82%A9%E3%83%AD%E3%83%AF%E3%83%BC%E6%A9%9F%E8%83%BD%E3%82%92er%E5%9B%B3%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E8%A8%AD%E8%A8%88%E3%81%97%E3%82%88%E3%81%86)
+---
+多対多のモデル(自己結合アソシエーション)
+Userモデルが1つしかないので、フォローする側、された側の判別ができない状況　→　困った
+自己結合アソシエーションは 1対多 でもありうるので認識しておくこと
 
+遭遇したエラー
 
-===============================================================================
-初期の表示
-===============================================================================
+調査内容
+ルーティングのmemberメソッドについて確認
+[Railsのroutesにつけるmemberってやつ](https://qiita.com/ryuuuuuuuuuu/items/607bf3ce92d80ceb9057)
+[railsのroutes.rbのmemberとcollectionの違いは?](https://qiita.com/k152744/items/141345e34fc0095217fe)
 
-Depending on your application's configuration some manual setup may be required:
+実行コマンド
+$ rails g model relationship following_id:integer follower_id:integer
+$ rails g controller relationships create destroy
+$ rails db:migrate
 
-  1. Ensure you have defined default url options in your environments files. Here
-     is an example of default_url_options appropriate for a development environment
-     in config/environments/development.rb:
-
-       config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
-     In production, :host should be set to the actual host of your application.
-
-     * Required for all applications. *
-
-  2. Ensure you have defined root_url to *something* in your config/routes.rb.
-     For example:
-
-       root to: "home#index"
-     
-     * Not required for API-only Applications *
-
-  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
-     For example:
-
-       <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
-
-     * Not required for API-only Applications *
-
-  4. You can copy Devise views (for customization) to your app by running:
-
-       rails g devise:views
-       
-     * Not required *
-
-===============================================================================
+追加タスク 以下、今後対応をすすめること
+1. [コメント機能も作ってみよう](https://qiita.com/kazukimatsumoto/items/14bdff681ec5ddac26d1#%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88%E6%A9%9F%E8%83%BD%E3%82%82%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%88%E3%81%86) 多対多の箇所の実装から自身で対応可能なはず
+2. 自己結合アソシエーション-tweetsのshowページは省略します。理屈がわかっていれば絶対にできるはずです、やってみましょう！
+3. dependentオプションとscopeオプションの調査と実装
+4. アプリのビューが残念なので、頃合いを見て修正すること（優先度は高くはない）
